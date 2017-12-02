@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+　<%#headerの読み込み%>
+　<%-include('header')-%>
+  <body>
+   <%#共通ヘッダーの読み込み%>
+   <%-include('header2')-%>
+   <p>新しいToDoを作成する</p>
+   <form id="form">
+     <input type="text" id="text" placeholder="リスト名を入力してください">
+     <button type="submit">リストの作成</button>
+   </form>
+   <ul id="list"></ul>
+   <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+   <script src='javascripts/todoCreate.js'></script>
+  </body>
+</html>
