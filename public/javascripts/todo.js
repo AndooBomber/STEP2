@@ -10,15 +10,20 @@ $('#form').submit(function () {
 });
 // ToDo一覧を取得して表示する
 function getList() {
+	var param = $('#todoName').text();
 	// すでに表示されている一覧を非表示にして削除する
 	var $list = $('#list');
 	$list.fadeOut(function () {
 		$list.children().remove();
 		// /todoにGETアクセスする
-		$.get('todo', function (todos) {
-			if (todos) {
+		$.post('/todoget', {
+			param: param
+		}, function (todos) {
+			var details = todos.details;
+			console.log(Object.keys(details).length);
+			if (Object.keys(details).length !== 0) {
 				// 取得したToDoを追加していく
-				$.each(todos, function (index, todo) {
+				$.each(details, function (index, todo) {
 					var limit = new Date(todo.limitDate);
 					var created = new Date(todo.createdDate);
 					var p1 = $('<p>').text(todo.text);
@@ -28,8 +33,10 @@ function getList() {
 					var Button1 = $('<Button>');
 					Button1.val(todo._id);
 					Button1.on('click', function (event) {
-						$.post('comp', {
-							id: $(event.target).val()
+						$.post('/comp', {
+							id: $(event.target).val(),
+							tf: $(event.target).text(),
+							param: param
 						}, function (res) {
 							console.log(res);
 							getList();
@@ -58,6 +65,7 @@ function postList() {
 	// フォームに入力された値を取得
 	var name = $('#text').val();
 	var limitDate = new Date($('#limit').val());
+	var param = $('#todoName').text();
 
 	//入力項目を空にする
 	$('#text').val('');
@@ -65,6 +73,7 @@ function postList() {
 
 	// /todoにPOSTアクセスする
 	$.post('/todo', {
+		param: param,
 		name: name,
 		limit: limitDate
 	}, function (res) {

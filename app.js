@@ -14,10 +14,6 @@ var app = express();
 
 var Schema = mongoose.Schema;
 var todoSchema = new Schema({
-  listName: {
-    type: String,
-    default: "Todo"
-  },
   isCheck: {
     type: Boolean,
     default: false
@@ -29,7 +25,16 @@ var todoSchema = new Schema({
   },
   limitDate: Date
 });
-mongoose.model('Todo', todoSchema);
+var todoList = new Schema({
+  listName: String,
+  createdDate: {
+    type: Date,
+    default: Date.now
+  },
+  details: [todoSchema]
+});
+mongoose.model('Todo', todoList);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,49 +57,80 @@ app.use('/users', users);
 app.get('/todoCreate', function (req, res) {
   var Todo = mongoose.model('Todo');
   Todo.find({}, function (err, todos) {
-
+    res.send(todos);
   });
 });
 
-//ToDo詳細画面
-app.get('/todo', function (req, res) {
-  var Todo = mongoose.model('Todo');
-  // すべてのToDoを取得して送る
-  if (Todo) {
-    Todo.find({}, function (err, todos) {
-      res.send(todos);
-    });
+app.post('/todoCreate', function (req, res) {
+  var name = req.body.name;
+  if (name) {
+    var Todo = mongoose.model('Todo');
+    var todo = new Todo();
+    todo.listName = name;
+    todo.save();
+    res.send(true);
   } else {
     res.send(false);
   }
 });
 
-app.post('/comp', function (req, res) {
+//ToDo詳細画面
+app.post('/todoget', function (req, res) {
   var Todo = mongoose.model('Todo');
-  Todo.findById(mongoose.Types.ObjectId(req.body.id), function (err, docs) {
-    var tf = !docs.isCheck;
-    Todo.findByIdAndUpdate(mongoose.Types.ObjectId(req.body.id), {
-        $set: {
-          isCheck: tf
-        }
-      }, {
-        upsert: false
-      },
-      function (err) {});
+  // すべてのToDoを取得して送る
+  var listName = String(req.body.param);
+  Todo.findOne({
+    listName: listName
+  }, function (err, todos) {
+    res.send(todos);
   });
-  res.send(true);
 });
 
-app.post('/todo', function (req, res) {
+app.post('/comp', function (req, res) { //mada
+  var Todo = mongoose.model('Todo');
+  var listName = req.body.param;
+  var compName = req.body.tf;
+  var id = req.body.id;
+  console.log(compName);
+  console.log(listName);
+  console.log(id);
+  var tf;
+  if (compName == "完了") { //error
+    tf = false;
+  } else {
+    tf = true;
+  }
+  console.log(tf);
+  Todo.findOneAndUpdate({
+    listName: listName,
+    'details._id': id
+  }, {
+    $set: {
+      'details.$.isCheck': tf
+    }
+  }, function (err, todos) {
+    res.send(true);
+  });
+});
+
+app.post('/todo', function (req, res) { //mada
   var name = req.body.name;
   var limit = req.body.limit;
+  var listName = req.body.param;
   // ToDoの名前と期限のパラーメタがあればMongoDBに保存
-  if (name && limit) {
+  if (name && limit && listName) {
     var Todo = mongoose.model('Todo');
-    var todo = new Todo();
-    todo.text = name;
-    todo.limitDate = limit;
-    todo.save();
+    Todo.findOne({
+      listName: listName
+    }, function (err, todo) {
+      var schema = {};
+      schema.isCheck = false;
+      schema.text = name;
+      schema.limitDate = limit;
+      schema.createdDate = Date.now();
+      todo.details.push(schema);
+      todo.save(function (err) {});
+    });
     res.send(true);
   } else {
     res.send(false);

@@ -4,6 +4,7 @@
   <%- include('header') -%>
 <body>
   <%- include('header2') -%>
+  <h1 id='todoName'><%=param%></h1>
   <%# ToDo入力フォームを作成する%>
   <p>新しいTodoを作成する</p>
   <form id='form'>
@@ -23,7 +24,7 @@
   <ul id='list'></ul>
   <%# jQueryとtodo.jsを読み込む%>
   <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-  <script src='javascripts/todo.js'></script>
+  <script src='../javascripts/todo.js'></script>
 </body>
 
 </html>
