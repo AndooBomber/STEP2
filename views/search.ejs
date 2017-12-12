@@ -1,11 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<%-include('header')-%> 
-    <body>
-    <%-include('header2')-%>
-    <form>
-        <input type="text">
-        <button type="submit">検索</button>
-    </form>
-    </body>
+<html>
+<%# header.ejsの読み込み%>
+<%-include('header')-%>
+<body>
+  <%# 共通ヘッダーの読み込み%>
+  <%-include('header2')-%>
+  <p class='newToDo'>検索</p>
+  <%#ToDo、ToDoリスト検索入力フォームを作成する%>
+  <form id='form'>
+    <input type='text' id='text' size='30'>
+    <span class='btn'>
+      <button type='submit'>検索</button>
+    </span>
+  </form>
+  <p id='visible' style='display:none'></p>
+  <%#ToDo一覧を表示する%>
+  <div class='ul'>
+    <div>ToDo</div>
+    <p id='todoNum' style='display:none' class='todoSearchResult'></p>
+    <ul id='ul1'></ul>
+  </div>
+  <%#ToDoリスト一覧を表示する%>
+  <div class='ul'>
+    <div>ToDoリスト</div>
+    <p id='todoListNum' style='display:none' class='todoSearchResult'></p>
+    <ul id='ul2'></ul>
+  </div>
+  <%#jQueryとtodo.jsを読み込む%>
+　<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+　<script src='javascripts/search.js'></script>
+</body>
 </html>

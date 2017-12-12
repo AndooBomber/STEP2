@@ -1,8 +1,258 @@
+html {
+  background: linear-gradient(55deg, #3b2466, #242b66, #246566, #286624, #586624);
+  background-size: 1600% 1600%;
+  -webkit-animation: AnimationName 100s ease infinite;
+  -moz-animation: AnimationName 100s ease infinite;
+  -o-animation: AnimationName 100s ease infinite;
+  animation: AnimationName 100s ease infinite;
+  overflow-y: scroll;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@-o-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
 body {
-	padding: 50px;
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 50px;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  width: 730px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #ffffff00;
+  /*text-align: center;*/
 }
 
 a {
-	color: #00B7FF;
+  color: rgb(0, 143, 196);
+}
+
+header {
+  width: auto;
+  height: 60px;
+  background-color: #ffffff00;
+  font-size: 3em;
+  border: solid 3px #0275d8;
+  padding: 0.7em;
+  border-radius: 0.5em;
+  margin: 5px;
+}
+
+#title {
+  float: left;
+  margin-top: 7px;
+  text-decoration: none;
+  color: #0275d8;
+  transition: color 1s;
+}
+
+#title:hover {
+  color: #ffffff;
+}
+
+#search {
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  -webkit-filter: brightness(100);
+  -moz-filter: brightness(100);
+  -o-filter: brightness(100);
+  -ms-filter: brightness(100);
+  filter: brightness(100);
+}
+
+p,
+div {
+  color: #ffffff;
+}
+
+input:focus {
+  border: solid 1.5px rgb(74, 205, 238);
+}
+
+button {
+  font-size: 1.3rem;
+  background-color: transparent;
+  border: 2px solid #0275d8;
+  color: #0275d8;
+  line-height: 50px;
+  border-radius: 10px;
+  transition: background-color 1s, color 1s;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+button:hover {
+  background-color: #0275d8;
+  color: #ffffff;
+}
+
+button:active {
+  background-color: #003561;
+  box-shadow: 0 0 #4063A4;
+  top: 6px;
+}
+
+.compButton {
+  background-color: #0275d8;
+  color: #ffffff;
+}
+
+.compButton:hover {
+  background-color: transparent;
+  color: #0275d8;
+}
+
+.btn {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+form {
+  position: relative;
+  margin: 0em 1em 1em 1em;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px silver;
+  padding: 2em 1em 2em 2em;
+}
+
+form p,
+label {
+  font-size: 17px;
+}
+
+form input {
+  font-size: 22px;
+  margin: 7px;
+}
+
+form p {
+  color: #000000;
+}
+
+form label {
+  margin-right: 11px;
+}
+
+#limit {
+  margin-left: 19px;
+}
+
+ul {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px silver;
+  padding: 3px;
+}
+
+ul li {
+  position: relative;
+  border-top: solid #ddddddc2 1.5px;
+  padding: 1.2em 5em 1.2em 7em;
+  line-height: 2.0em;
+}
+
+li p {
+  font-size: 1.1em;
+  color: #000000;
+}
+
+li a {
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+  margin: 8px 0px 13px;
+}
+
+.newToDo {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 1em;
+}
+
+.ul {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px silver;
+  padding: 3px;
+  margin-bottom: 10px;
+}
+
+.ul ul {
+  background: #ffffff;
+  border-radius: 0px;
+  box-shadow: 0px 0px 0px silver;
+  padding: 0px;
+}
+
+.ul div {
+  padding: .75rem 1.25rem;
+  margin-bottom: 0px;
+  background-color: #f7f7f9;
+  border-bottom: 1px solid rgba(0, 0, 0, .125);
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  font-size: 1.5rem;
+  color: #000000;
+}
+
+.todoText {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 5px 0px;
+}
+
+.todoSearchResult {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-left: 10px;
 }
