@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 // mongooseを用いてMongoDBに接続する
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/tl_test1');
+mongoose.connect('mongodb://heroku_dwwhgb26:n25gpgncl34vnpdp1b3hsdmgts@ds231715.mlab.com:31715/heroku_dwwhgb26');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
