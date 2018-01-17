@@ -54,7 +54,7 @@ function search() {
             count1++;
             var li1 = $('<li>');
             var a1 = $('<a>').text(todo.listName);
-            a1.attr('href', 'http://localhost:3000/list/' + todo.listName);
+            a1.attr('href', 'https://boiling-sierra-35062.herokuapp.com/list/' + todo.listName);
             var created = new Date(todo.createdDate);
             var p1 = $('<p>').text('作成日: ' + created.getFullYear() + '年' + (created.getMonth() + 1) + '月' + created.getDate() + '日');
             // ToDoリストの作成日をcreatedTimes1に記録する
@@ -72,7 +72,7 @@ function search() {
               count2++;
               var li2 = $('<li>');
               var a2 = $('<a>').text(detail.text);
-              a2.attr('href', 'http://localhost:3000/list/' + todo.listName);
+              a2.attr('href', 'https://boiling-sierra-35062.herokuapp.com/list/' + todo.listName);
               var p2 = $('<p>').text('リスト: ' + todo.listName);
               var limit = new Date(detail.limitDate);
               var created = new Date(detail.createdDate);

@@ -28,7 +28,7 @@ function getList() {
         var li1 = $('<li>');
         var sp = $('<span>');
         var a1 = $('<a>').text(todo.listName);
-        a1.attr('href', 'http://localhost:3000/list/' + todo.listName);
+        a1.attr('href', 'https://boiling-sierra-35062.herokuapp.com/list/' + todo.listName);
         todoNames.push(todo.listName);
         //ToDoリストの中身が空ならToDoがありませんと表示する
         if (Object.keys(todo.details).length === 0) {
